@@ -18,10 +18,11 @@ export default function SeatScreen() {
 
     promise.then((res) => {
       setSeats(res.data.seats);
+    
     });
 
     promise.catch((err) => {
-      console.log(err.message);
+      console.log("a");
     });
   });
 

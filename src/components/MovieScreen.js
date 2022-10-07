@@ -20,11 +20,13 @@ export default function MovieScreen() {
       <p> Selecione o filme </p>
       <BannerGrid>
         {banners.map((banner, i) => (
-          <Link to={`/session/${banner.id}`}>
-            <BannerSty key={i}>
+          <div key={i}>
+          <Link to={`/session/${banner.id}` }>
+            <BannerSty >
               <img src={banner.posterURL} alt="poster" />{" "}
             </BannerSty>
           </Link>
+          </div>
         ))}
       </BannerGrid>
     </MovieScreenSty>

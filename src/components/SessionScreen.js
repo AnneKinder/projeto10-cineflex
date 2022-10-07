@@ -7,7 +7,7 @@ import axios from "axios";
 export default function SessionScreen() {
   const { idMovie } = useParams();
   let [ses, setSes] = useState([]);
-  let [days, setDays] = useState([]);
+  let [ddays, setDays] = useState([]);
 
   useEffect(() => {
     const promise = axios.get(
@@ -25,7 +25,7 @@ export default function SessionScreen() {
     <SessionScreenSty>
       <PSty> Selecione o horário </PSty>
 
-      {days.map((day, i) => (
+      {ddays.map((day, i) => (
         <div key={i}>
           <DaySty>
             {" "}
@@ -35,14 +35,14 @@ export default function SessionScreen() {
             <Link to={`/seats/${day.showtimes[0].id}`}>
               <HourSty>{day.showtimes[0].name}</HourSty>
             </Link>
-            <Link to={`/seats/${day.showtimes[0].id}`}>
+            <Link to={`/seats/${day.showtimes[1].id}`}>
               <HourSty>{day.showtimes[1].name}</HourSty>
             </Link>
           </HourContainerSty>
         </div>
       ))}
       <PreviewSty>
-        <img src={ses.posterURL} alt="enola" />
+        <img src={ses.posterURL} alt="poster" />
         <PSty> {ses.title}</PSty>
       </PreviewSty>
     </SessionScreenSty>
