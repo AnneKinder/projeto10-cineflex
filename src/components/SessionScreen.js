@@ -32,10 +32,10 @@ export default function SessionScreen() {
             {day.weekday} - {day.date}
           </DaySty>
           <HourContainerSty>
-            <Link to="/seats">
+            <Link to={`/seats/${day.showtimes[0].id}`}>
               <HourSty>{day.showtimes[0].name}</HourSty>
             </Link>
-            <Link to="/seats">
+            <Link to={`/seats/${day.showtimes[0].id}`}>
               <HourSty>{day.showtimes[1].name}</HourSty>
             </Link>
           </HourContainerSty>

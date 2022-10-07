@@ -6,13 +6,14 @@ import axios from "axios";
 import Seat from "./Seat.js";
 
 export default function SeatScreen() {
+  const { idSessao } = useParams;
   let [seats, setSeats] = useState([]);
   let [comprador, setComprador] = useState("");
   let [cpf, setCpf] = useState("");
 
   useEffect(() => {
     const promise = axios.get(
-      "https://mock-api.driven.com.br/api/v5/cineflex/showtimes/8/seats"
+      `https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSessao}/seats`
     );
 
     promise.then((res) => {
@@ -20,7 +21,7 @@ export default function SeatScreen() {
     });
 
     promise.catch((err) => {
-      console.log("eita:" + err.response.message);
+      console.log(err.message);
     });
   });
 
