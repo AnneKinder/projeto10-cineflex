@@ -1,7 +1,13 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export default function Header() {
-  return <HeaderStyle> CINEFLEX </HeaderStyle>;
+  return (
+    <Link to="/">
+      {" "}
+      <HeaderStyle> CINEFLEX </HeaderStyle>{" "}
+    </Link>
+  );
 }
 
 const HeaderStyle = styled.div`
@@ -16,4 +22,5 @@ const HeaderStyle = styled.div`
   font-size: 34px;
   line-height: 40px;
   color: #e8833a;
+  text-decoration: underline #c3cfd9;
 `;
