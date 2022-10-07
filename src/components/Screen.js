@@ -1,3 +1,4 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 import Header from "./Header.js";
 import MovieScreen from "./MovieScreen";
@@ -7,13 +8,17 @@ import SuccessScreen from "./SuccessScreen";
 
 export default function Screen() {
   return (
-    <ScreenStyle>
-      <Header />
-      <MovieScreen />
-      {/* <SessionScreen />
-      <SeatScreen />
-      <SuccessScreen /> */}
-    </ScreenStyle>
+    <BrowserRouter>
+      <ScreenStyle>
+        <Header />
+        <Routes>
+          <Route path="/" element={<MovieScreen />} />
+          <Route path="/session/:idMovie" element={<SessionScreen />} />
+          <Route path="/seats/:idSessao" element={<SeatScreen />} />
+          <Route path="/success" element={<SuccessScreen />} />
+        </Routes>
+      </ScreenStyle>
+    </BrowserRouter>
   );
 }
 
