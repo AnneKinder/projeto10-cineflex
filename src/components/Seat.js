@@ -2,9 +2,10 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 
 let selected = [];
+let ids = [];
 
 export default function Seats(props) {
-  const { seats, seat, i, selectedprop, setSelectedProp } = props;
+  const { seats, seat, setSelectedProp, setSelectedId } = props;
   let [seatColor, setSeatColor] = useState("#c3cfd9");
 
   function addSelected(seatNumber) {
@@ -19,8 +20,23 @@ export default function Seats(props) {
         selected.splice(i, 1);
       }
     }
-
     setSelectedProp(selected);
+  }
+
+  function addId(seatId){
+    ids.push(seatId);
+    setSelectedId(ids);
+    console.log(ids)
+  }
+
+  function remId(seatId){
+    for (let i = 0; i < ids.length; i++) {
+      if (ids[i] === seatId) {
+        ids.splice(i, 1);
+      }
+    }
+    setSelectedProp(ids);
+    console.log(ids)
   }
 
   useEffect(() => {
@@ -32,15 +48,17 @@ export default function Seats(props) {
     }
   }, []);
 
-  function checkSeat(seatNumber) {
+  function checkSeat(seatNumber, seatId) {
     if (seatColor === "#c3cfd9") {
       addSelected(seatNumber);
+      addId(seatId)
       setSeatColor("#1AAE9E");
     }
 
     if (seatColor === "#1AAE9E") {
       //ta verde -> vai pra cinza
       remSelected(seatNumber);
+      remId(seatId)
       setSeatColor("#c3cfd9");
     }
     if (seatColor === "#FBE192") {
@@ -50,7 +68,10 @@ export default function Seats(props) {
   }
 
   return (
-    <SeatSty colorprop={seatColor} onClick={() => checkSeat(seat.name)}>
+    <SeatSty
+      colorprop={seatColor}
+      onClick={() => checkSeat(seat.name, seat.id)}
+    >
       {" "}
       {seat.name}{" "}
     </SeatSty>
