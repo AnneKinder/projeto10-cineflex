@@ -62,15 +62,15 @@ export default function SeatScreen() {
       </SeatGridSty>
       <CaptionSty>
         <ItemSty colorprop="#1AAE9E" borderprop="#0E7D71">
-          <div className="circle"> </div>
+          <div className="circle" data-identifier="seat-selected-subtitle"> </div>
           <h1> Selecionado </h1>
         </ItemSty>
         <ItemSty colorprop="#C3CFD9" borderprop="#7B8B99">
-          <div className="circle"> </div>
+          <div className="circle" data-identifier="seat-available-subtitle"> </div>
           <h1> Disponível </h1>
         </ItemSty>
         <ItemSty colorprop="#FBE192" borderprop="#F7C52B">
-          <div className="circle"> </div>
+          <div className="circle" data-identifier="seat-unavailable-subtitle"> </div>
           <h1> Indisponível </h1>
         </ItemSty>
       </CaptionSty>
@@ -78,10 +78,11 @@ export default function SeatScreen() {
         <BuyerSty>
           <PSty>Nome do comprador:</PSty>
           <input
+          
             type="text"
             placeholder="     Digite seu nome..."
             onChange={(e) => setComprador(e.target.value)}
-            
+            data-identifier="buyer-name-input"
           />
         </BuyerSty>
         <BuyerSty>
@@ -90,21 +91,23 @@ export default function SeatScreen() {
             type="text"
             placeholder="     Digite seu cpf..."
             onChange={(e) => setCpf(e.target.value)}
-            
+            data-identifier="buyer-cpf-input" 
           />
         </BuyerSty>
 
         <Link to="/success">
+          <div data-identifier="reservation-btn">
           <ReserveSty onClick={() => saveData()}>
             Reservar assento(s)
           </ReserveSty>
+          </div>
         </Link>
       </form>
       <PreviewSty>
         <img
           src={chosenMovie.posterURL}
           alt="poster"
-          ata-identifier="movie-and-session-infos-preview"
+          data-identifier="movie-and-session-infos-preview"
         />
         <PSty> {chosenMovie.title} </PSty>
         <PSty> {chosenDate.weekday} {showtime} </PSty>

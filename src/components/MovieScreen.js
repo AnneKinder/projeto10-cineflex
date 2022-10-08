@@ -23,7 +23,7 @@ export default function MovieScreen() {
           <div key={i}>
           <Link to={`/session/${banner.id}` }>
             <BannerSty >
-              <img src={banner.posterURL} alt="poster" data-identifier="movie-outdoor"/>{" "}
+              <img src={banner.posterURL} alt="poster"  />
             </BannerSty>
           </Link>
           </div>

@@ -12,7 +12,9 @@ export default function SuccessScreen() {
       <PSty> Comprador </PSty>
       <H1>nome e cpf</H1>
       <Link to="/">
+        <div data-identifier="back-to-home-btn">
         <HomeSty> Voltar para Home </HomeSty>
+        </div>
       </Link>
     </SuccessScreenSty>
   );

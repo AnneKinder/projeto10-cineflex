@@ -68,6 +68,7 @@ export default function Seats(props) {
   }
 
   return (
+    <div data-identifier="seat">
     <SeatSty
       colorprop={seatColor}
       onClick={() => checkSeat(seat.name, seat.id)}
@@ -75,6 +76,7 @@ export default function Seats(props) {
       {" "}
       {seat.name}{" "}
     </SeatSty>
+    </div>
   );
 }
 
