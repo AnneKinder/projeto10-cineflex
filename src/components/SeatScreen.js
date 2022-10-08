@@ -13,13 +13,7 @@ export default function SeatScreen() {
   let [selectedprop, setSelectedProp] = useState([]);
   let [selectedId, setSelectedId] = useState([]);
 
-
-
-
-
-
   useEffect(() => {
-    
     const promise = axios.get(
       `https://mock-api.driven.com.br/api/v5/cineflex/showtimes/10/seats`
     );
@@ -34,16 +28,13 @@ export default function SeatScreen() {
   });
 
   function saveData() {
+    let promise = axios.post(
+      "https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many",
+      { ids: selectedId, name: comprador, cpf: cpf }
+    );
 
-    let promise = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", 
-    {ids:selectedId,
-     name:comprador,
-     cpf:cpf})
- 
-    promise.then((res)=> console.log({selectedId}))
-    promise.catch((err)=>console.log(err)) 
-
-
+    promise.then((res) => console.log({ selectedId }));
+    promise.catch((err) => console.log(err));
   }
   return (
     <SeatScreenSty>
@@ -77,31 +68,37 @@ export default function SeatScreen() {
           <h1> Indisponível </h1>
         </ItemSty>
       </CaptionSty>
+      <form>
+        <BuyerSty>
+          <PSty>Nome do comprador:</PSty>
+          <input
+            type="text"
+            placeholder="     Digite seu nome..."
+            onChange={(e) => setComprador(e.target.value)}
+            
+          />
+        </BuyerSty>
+        <BuyerSty>
+          <PSty>CPF do comprador:</PSty>
+          <input
+            type="text"
+            placeholder="     Digite seu cpf..."
+            onChange={(e) => setCpf(e.target.value)}
+            
+          />
+        </BuyerSty>
 
-      <BuyerSty>
-        <PSty>Nome do comprador:</PSty>
-        <input
-          type="text"
-          placeholder="     Digite seu nome..."
-          onChange={(e) => setComprador(e.target.value)}
-        />
-      </BuyerSty>
-      <BuyerSty>
-        <PSty>CPF do comprador:</PSty>
-        <input
-          type="text"
-          placeholder="     Digite seu cpf..."
-          onChange={(e) => setCpf(e.target.value)}
-        />
-      </BuyerSty>
-
-      <Link to="/success">
-        <ReserveSty onClick={() => saveData()}>Reservar assento(s)</ReserveSty>
-      </Link>
+        <Link to="/success">
+          <ReserveSty onClick={() => saveData()}>
+            Reservar assento(s)
+          </ReserveSty>
+        </Link>
+      </form>
       <PreviewSty>
         <img
           src="https://sm.ign.com/ign_br/screenshot/default/enola-1_ak39.jpg"
-          alt="enola"
+          alt="poster"
+          ata-identifier="movie-and-session-infos-preview"
         />
         <PSty> Filme, dia da semana, sessão </PSty>
       </PreviewSty>

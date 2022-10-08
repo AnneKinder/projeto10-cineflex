@@ -26,11 +26,12 @@ export default function SessionScreen() {
       <PSty> Selecione o horário </PSty>
 
       {ddays.map((day, i) => (
-        <div key={i}>
+        <div key={i} data-identifier="session-date">
           <DaySty>
             {" "}
             {day.weekday} - {day.date}
           </DaySty>
+          <div data-identifier="hour-minute-btn">
           <HourContainerSty>
             <Link to={`/seats/${day.showtimes[0].id}`}>
               <HourSty>{day.showtimes[0].name}</HourSty>
@@ -39,10 +40,11 @@ export default function SessionScreen() {
               <HourSty>{day.showtimes[1].name}</HourSty>
             </Link>
           </HourContainerSty>
+          </div>
         </div>
       ))}
       <PreviewSty>
-        <img src={ses.posterURL} alt="poster" />
+        <img src={ses.posterURL} alt="poster" data-identifier="movie-img-preview"/>
         <PSty> {ses.title}</PSty>
       </PreviewSty>
     </SessionScreenSty>
