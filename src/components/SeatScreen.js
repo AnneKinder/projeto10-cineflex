@@ -12,6 +12,9 @@ export default function SeatScreen() {
   let [cpf, setCpf] = useState("");
   let [selectedprop, setSelectedProp] = useState([]);
   let [selectedId, setSelectedId] = useState([]);
+  let [chosenMovie, setChosenMovie] = useState([])
+  let [chosenDate, setChosenDate] = useState([])
+  let [showtime, setShowtime] = useState([])
 
   useEffect(() => {
     const promise = axios.get(
@@ -20,6 +23,9 @@ export default function SeatScreen() {
 
     promise.then((res) => {
       setSeats(res.data.seats);
+      setChosenMovie(res.data.movie)
+      setChosenDate(res.data.day)
+      setShowtime(res.data.name)
     });
 
     promise.catch((err) => {
@@ -96,11 +102,12 @@ export default function SeatScreen() {
       </form>
       <PreviewSty>
         <img
-          src="https://sm.ign.com/ign_br/screenshot/default/enola-1_ak39.jpg"
+          src={chosenMovie.posterURL}
           alt="poster"
           ata-identifier="movie-and-session-infos-preview"
         />
-        <PSty> Filme, dia da semana, sessão </PSty>
+        <PSty> {chosenMovie.title} </PSty>
+        <PSty> {chosenDate.weekday} {showtime} </PSty>
       </PreviewSty>
     </SeatScreenSty>
   );
