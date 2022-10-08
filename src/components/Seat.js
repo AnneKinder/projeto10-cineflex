@@ -1,28 +1,27 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 
-let selected = []
-
-function addSelected(seatNumber){
-  selected.push(seatNumber)
-  console.log(selected)
-}
-
-function remSelected(seatNumber){
-  for (let i=0; i<selected.length; i++){
-    if(selected[i]===seatNumber){
-      selected.splice(i, 1)
-    }
-  }
-  console.log(selected)
-}
-
+let selected = [];
 
 export default function Seats(props) {
-  const { seats, seat, i } = props;
+  const { seats, seat, i, selectedprop, setSelectedProp } = props;
   let [seatColor, setSeatColor] = useState("#c3cfd9");
-  
-  let counter = 0;
+
+  function addSelected(seatNumber) {
+    selected.push(seatNumber);
+
+    setSelectedProp(selected);
+  }
+
+  function remSelected(seatNumber) {
+    for (let i = 0; i < selected.length; i++) {
+      if (selected[i] === seatNumber) {
+        selected.splice(i, 1);
+      }
+    }
+
+    setSelectedProp(selected);
+  }
 
   useEffect(() => {
     if (seat.isAvailable === false) {
@@ -35,13 +34,13 @@ export default function Seats(props) {
 
   function checkSeat(seatNumber) {
     if (seatColor === "#c3cfd9") {
-      addSelected(seatNumber)
+      addSelected(seatNumber);
       setSeatColor("#1AAE9E");
     }
 
     if (seatColor === "#1AAE9E") {
       //ta verde -> vai pra cinza
-      remSelected(seatNumber)
+      remSelected(seatNumber);
       setSeatColor("#c3cfd9");
     }
     if (seatColor === "#FBE192") {

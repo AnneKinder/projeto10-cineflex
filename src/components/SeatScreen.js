@@ -10,6 +10,7 @@ export default function SeatScreen() {
   let [seats, setSeats] = useState([]);
   let [comprador, setComprador] = useState("");
   let [cpf, setCpf] = useState("");
+  let [selectedprop, setSelectedProp] = useState([]);
 
   useEffect(() => {
     const promise = axios.get(
@@ -18,7 +19,6 @@ export default function SeatScreen() {
 
     promise.then((res) => {
       setSeats(res.data.seats);
-    
     });
 
     promise.catch((err) => {
@@ -27,6 +27,7 @@ export default function SeatScreen() {
   });
 
   function saveData() {
+    console.log(selectedprop);
     console.log(comprador);
     console.log(cpf);
   }
@@ -35,7 +36,15 @@ export default function SeatScreen() {
       <PSty> Selecione o(s) assento(s) </PSty>
       <SeatGridSty>
         {seats.map((seat, i) => {
-          return <Seat key={i} seats={seats} seat={seat} />;
+          return (
+            <Seat
+              key={i}
+              seats={seats}
+              seat={seat}
+              selectedprop={selectedprop}
+              setSelectedProp={setSelectedProp}
+            />
+          );
         })}
       </SeatGridSty>
       <CaptionSty>
