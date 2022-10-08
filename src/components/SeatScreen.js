@@ -13,7 +13,7 @@ export default function SeatScreen() {
 
   useEffect(() => {
     const promise = axios.get(
-      `https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSessao}/seats`
+      `https://mock-api.driven.com.br/api/v5/cineflex/showtimes/10/seats`
     );
 
     promise.then((res) => {
