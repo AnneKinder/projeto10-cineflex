@@ -2,6 +2,12 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export default function SuccessScreen() {
+
+
+
+
+
+  
   return (
     <SuccessScreenSty>
       <PSty colorprop="#247A6B"> Pedido feito com sucesso! </PSty>

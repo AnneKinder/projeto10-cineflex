@@ -6,7 +6,7 @@ import axios from "axios";
 import Seat from "./Seat.js";
 
 export default function SeatScreen() {
-  const { idSessao } = useParams;
+  const { idSessao } = useParams(); //adicionei ()
   let [seats, setSeats] = useState([]);
   let [comprador, setComprador] = useState("");
   let [cpf, setCpf] = useState("");
@@ -18,7 +18,7 @@ export default function SeatScreen() {
 
   useEffect(() => {
     const promise = axios.get(
-      `https://mock-api.driven.com.br/api/v5/cineflex/showtimes/10/seats`
+      `https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSessao}/seats` //troquei de 10 p idSessao
     );
 
     promise.then((res) => {
@@ -95,7 +95,7 @@ export default function SeatScreen() {
           />
         </BuyerSty>
 
-        <Link to="/success">
+        <Link to="/success"> 
           <div data-identifier="reservation-btn">
           <ReserveSty onClick={() => saveData()}>
             Reservar assento(s)
