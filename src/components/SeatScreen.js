@@ -36,12 +36,12 @@ export default function SeatScreen() {
   function saveData() {
 
     let promise = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", 
-    {id:{selectedId},
-     name:{comprador},
-     cpf:{cpf}})
+    {ids:selectedId,
+     name:comprador,
+     cpf:cpf})
  
-    promise.then((res)=> console.log(res))
-    promise.catch((err)=>err.message + "não foi") 
+    promise.then((res)=> console.log({selectedId}))
+    promise.catch((err)=>console.log(err)) 
 
 
   }
