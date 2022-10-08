@@ -12,6 +12,11 @@ export default function SeatScreen() {
   let [cpf, setCpf] = useState("");
   let [selectedprop, setSelectedProp] = useState([]);
 
+
+
+
+
+
   useEffect(() => {
     const promise = axios.get(
       `https://mock-api.driven.com.br/api/v5/cineflex/showtimes/10/seats`
@@ -27,9 +32,13 @@ export default function SeatScreen() {
   });
 
   function saveData() {
-    console.log(selectedprop);
-    console.log(comprador);
-    console.log(cpf);
+
+    let promise = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", {id:{selectedprop}, name:{comprador}, cpf:{cpf}})
+ 
+    promise.then((res)=> console.log(res))
+    promise.catch((err)=>err.message + "não foi") 
+
+
   }
   return (
     <SeatScreenSty>
