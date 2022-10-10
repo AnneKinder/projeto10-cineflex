@@ -23,20 +23,19 @@ export default function Seats(props) {
     setSelectedProp(selected);
   }
 
-  function addId(seatId){
+  function addId(seatId) {
     ids.push(seatId);
     setSelectedId(ids);
-    console.log(ids)
+    console.log(selected);
   }
 
-  function remId(seatId){
+  function remId(seatId) {
     for (let i = 0; i < ids.length; i++) {
       if (ids[i] === seatId) {
         ids.splice(i, 1);
       }
     }
     setSelectedProp(ids);
-    console.log(ids)
   }
 
   useEffect(() => {
@@ -51,14 +50,14 @@ export default function Seats(props) {
   function checkSeat(seatNumber, seatId) {
     if (seatColor === "#c3cfd9") {
       addSelected(seatNumber);
-      addId(seatId)
+      addId(seatId);
       setSeatColor("#1AAE9E");
     }
 
     if (seatColor === "#1AAE9E") {
       //ta verde -> vai pra cinza
       remSelected(seatNumber);
-      remId(seatId)
+      remId(seatId);
       setSeatColor("#c3cfd9");
     }
     if (seatColor === "#FBE192") {
@@ -69,13 +68,13 @@ export default function Seats(props) {
 
   return (
     <div data-identifier="seat">
-    <SeatSty
-      colorprop={seatColor}
-      onClick={() => checkSeat(seat.name, seat.id)}
-    >
-      {" "}
-      {seat.name}{" "}
-    </SeatSty>
+      <SeatSty
+        colorprop={seatColor}
+        onClick={() => checkSeat(seat.name, seat.id)}
+      >
+        {" "}
+        {seat.name}{" "}
+      </SeatSty>
     </div>
   );
 }

@@ -1,25 +1,45 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export default function SuccessScreen() {
+export default function SuccessScreen(props) {
+  const {
+    nomeDoFilme,
+    nomeDoDia,
+    horaDoFilme,
+    nomeDoAssento,
+    nomeDoComprador,
+    cpfDoComprador
+  } = props;
 
-
-
-
-
-  
   return (
     <SuccessScreenSty>
       <PSty colorprop="#247A6B"> Pedido feito com sucesso! </PSty>
-      <PSty> Filmes e sessão </PSty>
-      <H1> filme, dia da semana, hora</H1>
+      <PSty> Filme e sessão </PSty>
+      <H1>{nomeDoFilme}</H1>
+      <H1>{nomeDoDia}</H1>
+      <H1>{horaDoFilme}</H1>
       <PSty> Ingressos </PSty>
-      <H1> <div data-identifier="seat-infos-reserve-finished">assentos</div></H1>
-      <PSty><div data-identifier="buyer-infos-reserve-finished"> Comprador </div>  </PSty>
-      <H1>nome e cpf</H1>
+
+      <div data-identifier="seat-infos-reserve-finished">
+        {nomeDoAssento.map((assento) => (
+          <H1> {assento} </H1>
+        ))}
+      </div>
+
+      <PSty>
+        <div data-identifier="buyer-infos-reserve-finished"> Comprador </div>{" "}
+      </PSty>
+      <H1>{nomeDoComprador}</H1>
+      <H1>{cpfDoComprador}</H1>
       <Link to="/">
         <div data-identifier="back-to-home-btn">
-        <HomeSty> <div data-identifier="back-to-home-btn"> Voltar para Home  </div> </HomeSty>
+          <HomeSty>
+            {" "}
+            <div data-identifier="back-to-home-btn">
+              {" "}
+              Voltar para Home{" "}
+            </div>{" "}
+          </HomeSty>
         </div>
       </Link>
     </SuccessScreenSty>

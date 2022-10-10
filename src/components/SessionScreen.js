@@ -32,19 +32,23 @@ export default function SessionScreen() {
             {day.weekday} - {day.date}
           </DaySty>
           <div data-identifier="hour-minute-btn">
-          <HourContainerSty>
-            <Link to={`/seats/${day.showtimes[0].id}`}>
-              <HourSty>{day.showtimes[0].name}</HourSty>
-            </Link>
-            <Link to={`/seats/${day.showtimes[1].id}`}>
-              <HourSty>{day.showtimes[1].name}</HourSty>
-            </Link>
-          </HourContainerSty>
+            <HourContainerSty>
+              <Link to={`/seats/${day.showtimes[0].id}`}>
+                <HourSty>{day.showtimes[0].name}</HourSty>
+              </Link>
+              <Link to={`/seats/${day.showtimes[1].id}`}>
+                <HourSty>{day.showtimes[1].name}</HourSty>
+              </Link>
+            </HourContainerSty>
           </div>
         </div>
       ))}
       <PreviewSty>
-        <img src={ses.posterURL} alt="poster" data-identifier="movie-img-preview"/>
+        <img
+          src={ses.posterURL}
+          alt="poster"
+          data-identifier="movie-img-preview"
+        />
         <PSty> {ses.title}</PSty>
       </PreviewSty>
     </SessionScreenSty>

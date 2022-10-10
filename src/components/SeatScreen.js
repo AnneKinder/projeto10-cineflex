@@ -5,39 +5,51 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Seat from "./Seat.js";
 
-
-
 export default function SeatScreen(props) {
-  const { idSessao } = useParams(); //adicionei ()
-  const {dadoteste, setDadoTeste}= props
+  const { idSessao } = useParams();
+  const {
+    setNomeDoFilme,
+    setNomeDoDia,
+    setHoraDoFilme,
+    setNomeDoAssento,
+    setNomeDoComprador,
+    setCpfDoComprador,
+  } = props;
+
   let [seats, setSeats] = useState([]);
   let [comprador, setComprador] = useState("");
   let [cpf, setCpf] = useState("");
   let [selectedprop, setSelectedProp] = useState([]);
   let [selectedId, setSelectedId] = useState([]);
-  let [chosenMovie, setChosenMovie] = useState([])
-  let [chosenDate, setChosenDate] = useState([])
-  let [showtime, setShowtime] = useState([])
+  let [chosenMovie, setChosenMovie] = useState([]);
+  let [chosenDate, setChosenDate] = useState([]);
+  let [showtime, setShowtime] = useState([]);
 
   useEffect(() => {
     const promise = axios.get(
-      `https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSessao}/seats` //troquei de 10 p idSessao
+      `https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSessao}/seats`
     );
 
     promise.then((res) => {
       setSeats(res.data.seats);
-      setChosenMovie(res.data.movie)
-      setChosenDate(res.data.day)
-      setShowtime(res.data.name)
-      
+      setChosenMovie(res.data.movie);
+      setChosenDate(res.data.day);
+      setShowtime(res.data.name);
     });
 
     promise.catch((err) => {
-      console.log("a");
+      console.log(err);
     });
   });
 
   function saveData() {
+    setNomeDoFilme(chosenMovie.title);
+    setNomeDoDia(chosenDate.weekday);
+    setHoraDoFilme(showtime);
+    setNomeDoAssento(selectedprop);
+    setNomeDoComprador(comprador);
+    setCpfDoComprador(cpf);
+
     let promise = axios.post(
       "https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many",
       { ids: selectedId, name: comprador, cpf: cpf }
@@ -66,15 +78,21 @@ export default function SeatScreen(props) {
       </SeatGridSty>
       <CaptionSty>
         <ItemSty colorprop="#1AAE9E" borderprop="#0E7D71">
-          <div className="circle" data-identifier="seat-selected-subtitle"> </div>
+          <div className="circle" data-identifier="seat-selected-subtitle">
+            {" "}
+          </div>
           <h1> Selecionado </h1>
         </ItemSty>
         <ItemSty colorprop="#C3CFD9" borderprop="#7B8B99">
-          <div className="circle" data-identifier="seat-available-subtitle"> </div>
+          <div className="circle" data-identifier="seat-available-subtitle">
+            {" "}
+          </div>
           <h1> Disponível </h1>
         </ItemSty>
         <ItemSty colorprop="#FBE192" borderprop="#F7C52B">
-          <div className="circle" data-identifier="seat-unavailable-subtitle"> </div>
+          <div className="circle" data-identifier="seat-unavailable-subtitle">
+            {" "}
+          </div>
           <h1> Indisponível </h1>
         </ItemSty>
       </CaptionSty>
@@ -82,7 +100,6 @@ export default function SeatScreen(props) {
         <BuyerSty>
           <PSty>Nome do comprador:</PSty>
           <input
-          
             type="text"
             placeholder="     Digite seu nome..."
             onChange={(e) => setComprador(e.target.value)}
@@ -95,15 +112,15 @@ export default function SeatScreen(props) {
             type="text"
             placeholder="     Digite seu cpf..."
             onChange={(e) => setCpf(e.target.value)}
-            data-identifier="buyer-cpf-input" 
+            data-identifier="buyer-cpf-input"
           />
         </BuyerSty>
 
-        <Link to="/success"> 
+        <Link to="/success">
           <div data-identifier="reservation-btn">
-          <ReserveSty onClick={() => saveData()}>
-            Reservar assento(s)
-          </ReserveSty>
+            <ReserveSty onClick={() => saveData()}>
+              Reservar assento(s)
+            </ReserveSty>
           </div>
         </Link>
       </form>
@@ -114,7 +131,10 @@ export default function SeatScreen(props) {
           data-identifier="movie-and-session-infos-preview"
         />
         <PSty> {chosenMovie.title} </PSty>
-        <PSty> {chosenDate.weekday} {showtime} </PSty>
+        <PSty>
+          {" "}
+          {chosenDate.weekday} {showtime}{" "}
+        </PSty>
       </PreviewSty>
     </SeatScreenSty>
   );
