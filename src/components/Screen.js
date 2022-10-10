@@ -15,8 +15,7 @@ export default function Screen() {
   let [nomeDoComprador, setNomeDoComprador] = useState("nomeDoComprador");
   let [cpfDoComprador, setCpfDoComprador] = useState("cpfDoComprador");
 
-  // const {nomeDoFilme, setNomeDoFilme,nomeDoDia, setNomeDoDia, horaDoFilme, setHoraDoFilme, nomeDoAssento, setNomeDoAssento, nomeDoComprador, setNomeDoComprador, cpfDoComprador, setCpfDoComprador } = props
-
+ 
   return (
     <BrowserRouter>
       <ScreenStyle>
