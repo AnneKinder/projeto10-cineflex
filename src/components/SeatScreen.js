@@ -5,8 +5,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Seat from "./Seat.js";
 
-export default function SeatScreen() {
+
+
+export default function SeatScreen(props) {
   const { idSessao } = useParams(); //adicionei ()
+  const {dadoteste, setDadoTeste}= props
   let [seats, setSeats] = useState([]);
   let [comprador, setComprador] = useState("");
   let [cpf, setCpf] = useState("");
@@ -26,6 +29,7 @@ export default function SeatScreen() {
       setChosenMovie(res.data.movie)
       setChosenDate(res.data.day)
       setShowtime(res.data.name)
+      
     });
 
     promise.catch((err) => {
